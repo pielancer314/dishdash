@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant - DishDash</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <a href="/" class="flex items-center py-4">
+                        <span class="font-bold text-2xl text-purple-600">DishDash</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative" id="cart-icon">
+                        <button class="p-2 hover:bg-gray-100 rounded-full relative">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                            <span class="absolute -top-1 -right-1 bg-purple-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center" id="cart-count">0</span>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl hidden" id="cart-dropdown">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-4">Your Cart</h3>
+                                <div id="cart-items" class="space-y-2">
+                                    <!-- Cart items will be inserted here -->
+                                </div>
+                                <div class="border-t mt-4 pt-4">
+                                    <div class="flex justify-between font-bold">
+                                        <span>Total:</span>
+                                        <span id="cart-total">π0.00</span>
+                                    </div>
+                                    <button onclick="window.location.href='/checkout.html'" class="w-full mt-4 bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="py-2 px-4 text-gray-500 hover:text-purple-600">Login</a>
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="h-64 w-full relative">
+                <img src="" alt="Restaurant Cover" id="restaurant-cover" class="w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                    <h1 class="text-3xl font-bold text-white" id="restaurant-name"></h1>
+                    <div class="flex items-center space-x-4 text-white mt-2">
+                        <div class="flex items-center">
+                            <span class="text-yellow-400" id="restaurant-rating"></span>
+                            <span class="ml-1" id="review-count"></span>
+                        </div>
+                        <span id="cuisine-type"></span>
+                        <span id="delivery-time"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="flex-1">
+                        <input type="text" placeholder="Search menu items..." class="w-full p-2 border rounded-lg">
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 border rounded-lg hover:bg-gray-50">Veg Only</button>
+                        <button class="px-4 py-2 border rounded-lg hover:bg-gray-50">Sort by Price</button>
+                    </div>
+                </div>
+
+                <div class="space-y-8" id="menu-categories">
+                    <!-- Menu categories will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/restaurant.js"></script>
+</body>
+</html>

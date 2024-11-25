@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DishDash - Wallet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-lg">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between h-16">
+                    <div class="flex">
+                        <a href="/" class="flex items-center">
+                            <span class="text-xl font-bold text-indigo-600">DishDash</span>
+                        </a>
+                    </div>
+                    <div class="flex items-center">
+                        <span id="userEmail" class="text-gray-700"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <!-- Wallet Overview -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Wallet Overview</h2>
+                
+                <div id="walletInfo" class="hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Pi Balance -->
+                        <div class="bg-indigo-50 p-6 rounded-lg">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-medium text-gray-800">Pi Balance</h3>
+                                <span class="text-sm text-gray-500">Available</span>
+                            </div>
+                            <div class="flex items-baseline">
+                                <span id="piBalance" class="text-3xl font-bold text-indigo-600">0.00</span>
+                                <span class="ml-2 text-gray-600">π</span>
+                            </div>
+                        </div>
+
+                        <!-- PCM Balance -->
+                        <div class="bg-purple-50 p-6 rounded-lg">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-medium text-gray-800">PCM Balance</h3>
+                                <span class="text-sm text-gray-500">Available</span>
+                            </div>
+                            <div class="flex items-baseline">
+                                <span id="pcmBalance" class="text-3xl font-bold text-purple-600">0.00</span>
+                                <span class="ml-2 text-gray-600">PCM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex space-x-4">
+                        <button onclick="showDepositModal('pi')"
+                            class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            Deposit Pi
+                        </button>
+                        <button onclick="showDepositModal('pcm')"
+                            class="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            Deposit PCM
+                        </button>
+                    </div>
+                </div>
+
+                <div id="createWalletPrompt" class="hidden text-center py-8">
+                    <p class="text-gray-600 mb-4">You don't have a wallet yet. Create one to start using DishDash.</p>
+                    <button onclick="createWallet()"
+                        class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        Create Wallet
+                    </button>
+                </div>
+            </div>
+
+            <!-- Transaction History -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Transaction History</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionHistory" class="divide-y divide-gray-200">
+                            <!-- Transactions will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deposit Modal -->
+    <div id="depositModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <h3 id="depositTitle" class="text-2xl font-semibold text-gray-800 mb-6"></h3>
+            
+            <div class="mb-6">
+                <label for="depositAmount" class="block text-sm font-medium text-gray-700 mb-2">Amount</label>
+                <div class="relative rounded-md shadow-sm">
+                    <input type="number" id="depositAmount" min="0" step="0.000001"
+                        class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-4 pr-12 sm:text-sm border-gray-300 rounded-md"
+                        placeholder="0.00">
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <span id="depositCurrency" class="text-gray-500 sm:text-sm"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-4">
+                <button onclick="hideDepositModal()"
+                    class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    Cancel
+                </button>
+                <button onclick="submitDeposit()"
+                    class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    Deposit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let currentAsset = null;
+
+        // Check authentication
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '/login.html';
+                return;
+            }
+
+            currentUser = JSON.parse(localStorage.getItem('user'));
+            document.getElementById('userEmail').textContent = currentUser.email;
+
+            await checkWallet();
+            if (document.getElementById('walletInfo').classList.contains('hidden')) {
+                document.getElementById('createWalletPrompt').classList.remove('hidden');
+            } else {
+                await refreshWallet();
+            }
+        });
+
+        // Check if user has a wallet
+        async function checkWallet() {
+            try {
+                const response = await fetch('/api/wallet/balance', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    document.getElementById('walletInfo').classList.remove('hidden');
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error checking wallet:', error);
+                return false;
+            }
+        }
+
+        // Create new wallet
+        async function createWallet() {
+            try {
+                const response = await fetch('/api/wallet/create', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    document.getElementById('createWalletPrompt').classList.add('hidden');
+                    document.getElementById('walletInfo').classList.remove('hidden');
+                    await refreshWallet();
+                } else {
+                    alert('Failed to create wallet');
+                }
+            } catch (error) {
+                console.error('Error creating wallet:', error);
+                alert('Failed to create wallet');
+            }
+        }
+
+        // Refresh wallet data
+        async function refreshWallet() {
+            try {
+                // Get balances
+                const balanceResponse = await fetch('/api/wallet/balance', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (balanceResponse.ok) {
+                    const balances = await balanceResponse.json();
+                    document.getElementById('piBalance').textContent = parseFloat(balances.PI).toFixed(6);
+                    document.getElementById('pcmBalance').textContent = parseFloat(balances.PCM).toFixed(6);
+                }
+
+                // Get transaction history
+                const historyResponse = await fetch('/api/wallet/transactions', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (historyResponse.ok) {
+                    const history = await historyResponse.json();
+                    updateTransactionHistory(history);
+                }
+            } catch (error) {
+                console.error('Error refreshing wallet:', error);
+            }
+        }
+
+        // Show deposit modal
+        function showDepositModal(asset) {
+            currentAsset = asset;
+            const modal = document.getElementById('depositModal');
+            const title = document.getElementById('depositTitle');
+            const currency = document.getElementById('depositCurrency');
+
+            title.textContent = `Deposit ${asset.toUpperCase()}`;
+            currency.textContent = asset.toUpperCase();
+            modal.classList.remove('hidden');
+        }
+
+        // Hide deposit modal
+        function hideDepositModal() {
+            document.getElementById('depositModal').classList.add('hidden');
+            document.getElementById('depositAmount').value = '';
+            currentAsset = null;
+        }
+
+        // Submit deposit
+        async function submitDeposit() {
+            const amount = document.getElementById('depositAmount').value;
+            
+            if (!amount || isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/wallet/deposit/${currentAsset}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ amount })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    hideDepositModal();
+                    await refreshWallet();
+                    alert('Deposit initiated successfully');
+                } else {
+                    alert(data.message || 'Failed to initiate deposit');
+                }
+            } catch (error) {
+                console.error('Error submitting deposit:', error);
+                alert('Failed to initiate deposit');
+            }
+        }
+
+        // Update transaction history table
+        function updateTransactionHistory(history) {
+            const tbody = document.getElementById('transactionHistory');
+            tbody.innerHTML = '';
+
+            history.forEach(tx => {
+                tx.operations.forEach(op => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            ${new Date(tx.createdAt).toLocaleString()}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            ${op.type}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            ${op.amount} ${op.asset}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                Completed
+                            </span>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
