@@ -6,7 +6,12 @@
     <title>DishDash - Food Delivery with Pi</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <style>
+        .hero-section::before {
+            background-image: url('./images/pattern.svg');
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
@@ -44,9 +49,9 @@
             </p>
             <div class="max-w-2xl mx-auto relative animate-fade-in" style="animation-delay: 0.4s">
                 <div class="search-bar flex items-center">
-                    <i class="fas fa-search text-white ml-4"></i>
+                    <i class="fas fa-search text-gray-400 absolute left-4"></i>
                     <input type="text" placeholder="Search for restaurants or dishes..." 
-                           class="w-full p-4 pl-12 rounded-lg">
+                           class="w-full p-4 pl-12 rounded-lg bg-white text-gray-800">
                 </div>
                 <div class="search-results hidden absolute w-full bg-white mt-2 rounded-lg shadow-lg z-10"></div>
             </div>
@@ -60,7 +65,8 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div class="category-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer">
                     <div class="relative h-48">
-                        <img src="images/categories/pizza.jpg" alt="Pizza" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                             alt="Pizza" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                             <span class="text-white text-xl font-bold">Pizza</span>
                         </div>
@@ -68,7 +74,8 @@
                 </div>
                 <div class="category-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer">
                     <div class="relative h-48">
-                        <img src="images/categories/burger.jpg" alt="Burger" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                             alt="Burger" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                             <span class="text-white text-xl font-bold">Burger</span>
                         </div>
@@ -76,7 +83,8 @@
                 </div>
                 <div class="category-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer">
                     <div class="relative h-48">
-                        <img src="images/categories/sushi.jpg" alt="Sushi" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                             alt="Sushi" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                             <span class="text-white text-xl font-bold">Sushi</span>
                         </div>
@@ -84,7 +92,8 @@
                 </div>
                 <div class="category-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer">
                     <div class="relative h-48">
-                        <img src="images/categories/dessert.jpg" alt="Dessert" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                             alt="Dessert" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                             <span class="text-white text-xl font-bold">Dessert</span>
                         </div>
@@ -100,7 +109,8 @@
             <h2 class="text-3xl font-bold text-gray-800 mb-8">Featured Restaurants</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="restaurant-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <img src="images/restaurant1.jpg" alt="Restaurant" class="w-full h-56 object-cover">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                         alt="Restaurant" class="w-full h-56 object-cover">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <div>
@@ -238,6 +248,6 @@
     </footer>
 
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-    <script src="js/app.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>

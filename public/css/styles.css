@@ -42,42 +42,51 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('../images/pattern.svg') center/cover;
     opacity: 0.1;
+    pointer-events: none;
 }
 
 .hero-section h1 {
     font-size: 3.5rem;
     line-height: 1.2;
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* Search bar */
 .search-bar {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    background: white;
     border-radius: 0.75rem;
-    padding: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
 .search-bar:focus-within {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .search-bar input {
-    background: transparent;
-    border: none;
-    color: white;
     width: 100%;
-    padding: 0.75rem;
-    font-size: 1.1rem;
+    padding: 1rem 1rem 1rem 3rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    color: #1F2937;
+    background: transparent;
+}
+
+.search-bar input:focus {
+    outline: none;
 }
 
 .search-bar input::placeholder {
-    color: rgba(255, 255, 255, 0.8);
+    color: #9CA3AF;
+}
+
+.search-bar i {
+    color: #6B7280;
 }
 
 /* Category cards */
@@ -88,6 +97,7 @@
 
 .category-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .category-card img {
@@ -187,6 +197,24 @@
     width: 100%;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F3F4F6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8B5CF6;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7C3AED;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero-section {
@@ -202,22 +230,97 @@
         width: 90%;
         margin: 0 auto;
     }
+
+    .category-card {
+        margin-bottom: 1rem;
+    }
+
+    .restaurant-card {
+        margin-bottom: 2rem;
+    }
+
+    #cart-sidebar {
+        width: 100%;
+    }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .search-bar input {
+        font-size: 0.9rem;
+        padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+    }
+
+    .category-card .relative {
+        height: 120px;
+    }
+
+    .restaurant-card img {
+        height: 200px;
+    }
 }
 
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
+/* Animations for cart items */
+.cart-item {
+    animation: slideIn 0.3s ease-out;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #8B5CF6;
-    border-radius: 4px;
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #6366F1;
+/* Toast notifications */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: slideUp 0.3s ease-out;
+}
+
+.toast-success {
+    border-left: 4px solid #10B981;
+}
+
+.toast-error {
+    border-left: 4px solid #EF4444;
+}
+
+/* Loading states */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Focus styles for better accessibility */
+:focus {
+    outline: 2px solid #8B5CF6;
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
 }

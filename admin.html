@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - DishDash</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./public/css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Sidebar -->
+    <aside class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg">
+        <div class="p-4 border-b">
+            <div class="flex items-center">
+                <i class="fas fa-utensils text-purple-600 text-2xl mr-2"></i>
+                <span class="text-xl font-bold">DishDash Admin</span>
+            </div>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li>
+                    <a href="#dashboard" class="flex items-center p-2 text-gray-700 hover:bg-purple-50 rounded-lg">
+                        <i class="fas fa-chart-line w-6"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#orders" class="flex items-center p-2 text-gray-700 hover:bg-purple-50 rounded-lg">
+                        <i class="fas fa-shopping-bag w-6"></i>
+                        <span>Orders</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#restaurants" class="flex items-center p-2 text-gray-700 hover:bg-purple-50 rounded-lg">
+                        <i class="fas fa-store w-6"></i>
+                        <span>Restaurants</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#users" class="flex items-center p-2 text-gray-700 hover:bg-purple-50 rounded-lg">
+                        <i class="fas fa-users w-6"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#transactions" class="flex items-center p-2 text-gray-700 hover:bg-purple-50 rounded-lg">
+                        <i class="fas fa-coins w-6"></i>
+                        <span>Transactions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#settings" class="flex items-center p-2 text-gray-700 hover:bg-purple-50 rounded-lg">
+                        <i class="fas fa-cog w-6"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold">Dashboard Overview</h1>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+                        <i class="fas fa-plus mr-2"></i>Add Restaurant
+                    </button>
+                    <div class="relative">
+                        <button class="flex items-center space-x-2 bg-white p-2 rounded-lg">
+                            <img src="https://ui-avatars.com/api/?name=Admin&background=6366F1&color=fff" 
+                                 alt="Admin" 
+                                 class="w-8 h-8 rounded-full">
+                            <span>Admin</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500">Total Orders</h3>
+                    <i class="fas fa-shopping-cart text-purple-600"></i>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-3xl font-bold">1,234</span>
+                    <span class="ml-2 text-green-500 text-sm">
+                        <i class="fas fa-arrow-up"></i>
+                        12%
+                    </span>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500">Revenue</h3>
+                    <i class="fas fa-coins text-purple-600"></i>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-3xl font-bold">π15,678</span>
+                    <span class="ml-2 text-green-500 text-sm">
+                        <i class="fas fa-arrow-up"></i>
+                        8%
+                    </span>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500">Active Users</h3>
+                    <i class="fas fa-users text-purple-600"></i>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-3xl font-bold">892</span>
+                    <span class="ml-2 text-green-500 text-sm">
+                        <i class="fas fa-arrow-up"></i>
+                        15%
+                    </span>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500">Restaurants</h3>
+                    <i class="fas fa-store text-purple-600"></i>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-3xl font-bold">45</span>
+                    <span class="ml-2 text-green-500 text-sm">
+                        <i class="fas fa-arrow-up"></i>
+                        5%
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Orders -->
+        <section class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold mb-4">Recent Orders</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-left border-b">
+                            <th class="pb-4">Order ID</th>
+                            <th class="pb-4">Customer</th>
+                            <th class="pb-4">Restaurant</th>
+                            <th class="pb-4">Amount</th>
+                            <th class="pb-4">Status</th>
+                            <th class="pb-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="py-4">#12345</td>
+                            <td class="py-4">John Doe</td>
+                            <td class="py-4">Pizza Paradise</td>
+                            <td class="py-4">π25.99</td>
+                            <td class="py-4">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    Completed
+                                </span>
+                            </td>
+                            <td class="py-4">
+                                <button class="text-purple-600 hover:text-purple-800">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-4">#12344</td>
+                            <td class="py-4">Jane Smith</td>
+                            <td class="py-4">Burger Bliss</td>
+                            <td class="py-4">π18.50</td>
+                            <td class="py-4">
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
+                                    Pending
+                                </span>
+                            </td>
+                            <td class="py-4">
+                                <button class="text-purple-600 hover:text-purple-800">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Restaurant Performance -->
+        <section class="bg-white rounded-xl shadow-md p-6">
+            <h2 class="text-xl font-bold mb-4">Restaurant Performance</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-left border-b">
+                            <th class="pb-4">Restaurant</th>
+                            <th class="pb-4">Orders</th>
+                            <th class="pb-4">Revenue</th>
+                            <th class="pb-4">Rating</th>
+                            <th class="pb-4">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="py-4">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Restaurant" 
+                                         class="w-10 h-10 rounded-lg object-cover mr-3">
+                                    <span>Pizza Paradise</span>
+                                </div>
+                            </td>
+                            <td class="py-4">458</td>
+                            <td class="py-4">π5,890</td>
+                            <td class="py-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <span class="ml-1">4.8</span>
+                                </div>
+                            </td>
+                            <td class="py-4">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    Active
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-4">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Restaurant" 
+                                         class="w-10 h-10 rounded-lg object-cover mr-3">
+                                    <span>Burger Bliss</span>
+                                </div>
+                            </td>
+                            <td class="py-4">356</td>
+                            <td class="py-4">π4,230</td>
+                            <td class="py-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <span class="ml-1">4.6</span>
+                                </div>
+                            </td>
+                            <td class="py-4">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    Active
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+    <script src="./public/js/admin.js"></script>
+</body>
+</html>
