@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Food Delivery App",
-    "slug": "food-delivery-app",
+    "name": "Food Pi Hub",
+    "slug": "food-pi-hub",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,14 +18,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourcompany.fooddeliveryapp"
+      "bundleIdentifier": "com.foodpihub.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#6B46C1"
       },
-      "package": "com.yourcompany.fooddeliveryapp",
+      "package": "com.foodpihub.app",
       "versionCode": 1,
       "permissions": [
         "ACCESS_COARSE_LOCATION",
