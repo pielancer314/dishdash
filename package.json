@@ -1,5 +1,5 @@
 {
-  "name": Food-PI-Hub",
+  "name": food-pi-hub",
   "version": "1.0.0",
   "description": "food-pi-hub - Pi Network Food Delivery Platform",
   "main": "app.js",
