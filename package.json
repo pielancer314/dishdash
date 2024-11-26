@@ -1,7 +1,7 @@
 {
-  "name": "dishdash",
+  "name": Food-PI-Hub",
   "version": "1.0.0",
-  "description": "DishDash - Pi Network Food Delivery Platform",
+  "description": "food-pi-hub - Pi Network Food Delivery Platform",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
