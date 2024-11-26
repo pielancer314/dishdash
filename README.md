@@ -1,118 +1,104 @@
-# DishDash - Pi Network Food Delivery Platform
+# Food Pi Hub - Blockchain-Powered Food Delivery Platform
 
-A modern food delivery platform with integrated Pi Network payments, supporting both Pi Coin and PCM token transactions.
+Food Pi Hub is a modern food delivery platform that integrates Pi Network payments for a seamless ordering experience. Built with a focus on user experience and security, it offers a comprehensive solution for restaurants and customers.
 
 ## Features
 
-### Wallet Management System
-- Comprehensive transaction tracking
-- Support for Pi Coin and PCM token transactions
-- Secure deposit and withdrawal functionality
-- Advanced transaction filtering and pagination
+### For Customers
+- Browse restaurants and menus
+- Real-time order tracking
+- Secure Pi Network payments
+- Order history and favorites
+- User profiles and preferences
+- Reviews and ratings system
 
-### Admin Dashboard
-- System-wide transaction monitoring
-- Real-time system health metrics
-- Automated and manual transaction reconciliation
-- Comprehensive alerting system
+### For Restaurants
+- Menu management dashboard
+- Order processing system
+- Performance analytics
+- Customer feedback management
+- Real-time order notifications
 
-### Security Features
-- Rate limiting middleware
+### For Admin
+- Restaurant onboarding
+- User management
+- System analytics
+- Performance monitoring
+- Security controls
+
+## Technology Stack
+
+- **Frontend:**
+  - HTML5
+  - Tailwind CSS
+  - Vanilla JavaScript
+  - Font Awesome Icons
+
+- **Blockchain Integration:**
+  - Pi Network SDK 2.0
+  - Secure wallet management
+  - Payment processing
+  - Transaction verification
+
+## Security Features
+
+- JWT-based authentication
 - Role-based access control
-- Transaction validation
-- Detailed error tracking
+- Secure key management
+- Payment verification
+- Data encryption
 
-## Prerequisites
+## Getting Started
 
-- Node.js (v14+)
-- MongoDB
-- Redis
-- Pi Network API Key
-- Pi Network Wallet Keys
-- PCM Token Configuration
-
-## Installation
-
-1. Clone the repository
+1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/dishdash.git
-cd dishdash
+git clone https://github.com/pielancer314/food-pi-hub.git
+cd food-pi-hub
 ```
 
-2. Install dependencies
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Configure environment variables
-Copy `.env.example` to `.env` and update the values:
+3. Configure environment variables:
 ```bash
 cp .env.example .env
+# Edit .env with your configuration
 ```
 
-4. Start the development server
+4. Run the development server:
 ```bash
 npm run dev
 ```
 
-## Environment Variables
+## Pi Network Integration
 
-Required environment variables:
-```
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017/dishdash
-PI_API_KEY=your_pi_api_key
-PI_WALLET_PRIVATE_KEY=your_wallet_private_key
-PI_SANDBOX_MODE=true
-JWT_SECRET=your_jwt_secret_key_here
-PCM_ISSUER_ADDRESS=your_pcm_issuer_address
-PCM_DISTRIBUTOR_ADDRESS=your_pcm_distributor_address
-REDIS_HOST=localhost
-REDIS_PORT=6379
-REDIS_PASSWORD=your_redis_password
-```
-
-## API Endpoints
-
-### Authentication
-- POST /api/auth/register
-- POST /api/auth/login
-
-### Wallet Operations
-- GET /api/wallet/balance
-- POST /api/wallet/deposit
-- POST /api/wallet/withdraw
-- GET /api/wallet/transactions
-
-### Admin Dashboard
-- GET /api/admin/overview
-- GET /api/admin/transactions
-- GET /api/admin/system-health
-- POST /api/admin/reconcile
-
-## Security
-
-- JWT-based authentication
-- Rate limiting on sensitive endpoints
-- Role-based access control
-- Transaction validation
-- Secure key management
-
-## Testing
-
-Run the test suite:
-```bash
-npm test
-```
-
-## License
-
-MIT
+1. Connect your Pi wallet
+2. Authenticate with the platform
+3. Process secure payments
+4. View transaction history
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+- Project Link: [https://github.com/pielancer314/food-pi-hub](https://github.com/pielancer314/food-pi-hub)
+- Deployment: [GitHub Pages](https://pielancer314.github.io/food-pi-hub)
+
+## Acknowledgments
+
+- Pi Network Team
+- Tailwind CSS
+- Font Awesome
+- All contributors and supporters

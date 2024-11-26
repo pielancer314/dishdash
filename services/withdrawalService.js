@@ -58,7 +58,7 @@ class WithdrawalService {
             }));
 
             // Add memo
-            txBuilder.addMemo(StellarSdk.Memo.text(`DishDash withdrawal: ${transaction._id}`));
+            txBuilder.addMemo(StellarSdk.Memo.text(`Food Pi Hub withdrawal: ${transaction._id}`));
             
             // Set timeout and build
             const tx = txBuilder.setTimeout(30).build();
@@ -116,7 +116,7 @@ class WithdrawalService {
             }));
 
             // Add memo
-            txBuilder.addMemo(StellarSdk.Memo.text(`DishDash PCM withdrawal: ${transaction._id}`));
+            txBuilder.addMemo(StellarSdk.Memo.text(`Food Pi Hub PCM withdrawal: ${transaction._id}`));
             
             // Set timeout and build
             const tx = txBuilder.setTimeout(30).build();

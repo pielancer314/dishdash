@@ -186,7 +186,7 @@ class UserProfile {
         try {
             const payment = {
                 amount: 100, // Pi coins
-                memo: 'DishDash Wallet Top Up',
+                memo: 'Food Pi Hub Wallet Top Up',
                 metadata: { type: 'wallet_topup' }
             };
 

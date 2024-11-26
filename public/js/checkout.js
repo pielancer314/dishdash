@@ -118,7 +118,7 @@ async function createPayment() {
         // Create payment
         const payment = await Pi.createPayment({
             amount: total.toFixed(2),
-            memo: `DishDash Order - ${new Date().toISOString()}`,
+            memo: `Food Pi Hub Order - ${new Date().toISOString()}`,
             metadata: { cart },
         });
 

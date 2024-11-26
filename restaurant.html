@@ -3,85 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant - DishDash</title>
+    <title>Restaurant Details - Food Pi Hub</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./public/css/styles.css">
 </head>
-<body class="bg-gray-100">
-    <nav class="bg-white shadow-lg">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between">
-                <div class="flex space-x-7">
-                    <a href="/" class="flex items-center py-4">
-                        <span class="font-bold text-2xl text-purple-600">DishDash</span>
-                    </a>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="flex items-center">
+                            <i class="fas fa-utensils text-purple-600 text-2xl mr-2"></i>
+                            <span class="text-xl font-bold">Food Pi Hub</span>
+                        </a>
+                    </div>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <div class="relative" id="cart-icon">
-                        <button class="p-2 hover:bg-gray-100 rounded-full relative">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
-                            <span class="absolute -top-1 -right-1 bg-purple-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center" id="cart-count">0</span>
-                        </button>
-                        <div class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl hidden" id="cart-dropdown">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-4">Your Cart</h3>
-                                <div id="cart-items" class="space-y-2">
-                                    <!-- Cart items will be inserted here -->
-                                </div>
-                                <div class="border-t mt-4 pt-4">
-                                    <div class="flex justify-between font-bold">
-                                        <span>Total:</span>
-                                        <span id="cart-total">π0.00</span>
-                                    </div>
-                                    <button onclick="window.location.href='/checkout.html'" class="w-full mt-4 bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">Checkout</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="py-2 px-4 text-gray-500 hover:text-purple-600">Login</a>
-                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Sign Up</button>
+                    <button id="search-btn" class="text-gray-600 hover:text-purple-600">
+                        <i class="fas fa-search text-xl"></i>
+                    </button>
+                    <button id="favorites-btn" class="text-gray-600 hover:text-purple-600">
+                        <i class="fas fa-heart text-xl"></i>
+                    </button>
+                    <button id="cart-btn" class="text-gray-600 hover:text-purple-600 relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-purple-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">0</span>
+                    </button>
+                    <button id="wallet-connect" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+                        <i class="fas fa-wallet mr-2"></i>Connect Wallet
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-4 py-8">
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="h-64 w-full relative">
-                <img src="" alt="Restaurant Cover" id="restaurant-cover" class="w-full h-full object-cover">
-                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
-                    <h1 class="text-3xl font-bold text-white" id="restaurant-name"></h1>
-                    <div class="flex items-center space-x-4 text-white mt-2">
-                        <div class="flex items-center">
-                            <span class="text-yellow-400" id="restaurant-rating"></span>
-                            <span class="ml-1" id="review-count"></span>
-                        </div>
-                        <span id="cuisine-type"></span>
-                        <span id="delivery-time"></span>
-                    </div>
-                </div>
+    <!-- Search Modal -->
+    <div id="search-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="bg-white rounded-lg max-w-2xl mx-auto mt-20 p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Search Menu</h3>
+                <button class="text-gray-500 hover:text-gray-700" onclick="toggleSearchModal()">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-
-            <div class="p-6">
-                <div class="flex items-center space-x-4 mb-6">
-                    <div class="flex-1">
-                        <input type="text" placeholder="Search menu items..." class="w-full p-2 border rounded-lg">
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="px-4 py-2 border rounded-lg hover:bg-gray-50">Veg Only</button>
-                        <button class="px-4 py-2 border rounded-lg hover:bg-gray-50">Sort by Price</button>
-                    </div>
-                </div>
-
-                <div class="space-y-8" id="menu-categories">
-                    <!-- Menu categories will be inserted here -->
+            <div class="relative">
+                <input type="text" placeholder="Search for dishes..." 
+                       class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                <button class="absolute right-3 top-2 text-gray-400">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="mt-4">
+                <h4 class="font-semibold mb-2">Popular Searches</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-gray-100 rounded-full text-sm cursor-pointer hover:bg-purple-100">Pizza</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full text-sm cursor-pointer hover:bg-purple-100">Burger</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full text-sm cursor-pointer hover:bg-purple-100">Pasta</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full text-sm cursor-pointer hover:bg-purple-100">Salad</span>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Restaurant Header -->
+    <header class="pt-16">
+        <div class="relative h-96">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" 
+                 alt="Restaurant Cover" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent">
+                <div class="absolute bottom-0 left-0 right-0 p-8">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h1 class="text-4xl font-bold text-white mb-2">Pizza Paradise</h1>
+                                <div class="flex items-center space-x-4 text-white">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                        <span>4.8 (2.5k+ reviews)</span>
+                                    </div>
+                                    <span>•</span>
+                                    <span><i class="fas fa-clock mr-1"></i>30-45 min</span>
+                                    <span>•</span>
+                                    <span><i class="fas fa-motorcycle mr-1"></i>Free delivery</span>
+                                </div>
+                            </div>
+                            <button class="text-white hover:text-purple-300">
+                                <i class="fas fa-heart text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Menu Categories -->
+        <div class="flex items-center space-x-4 mb-8 overflow-x-auto pb-4">
+            <button class="px-4 py-2 rounded-full bg-purple-600 text-white flex-shrink-0">
+                All Items
+            </button>
+            <button class="px-4 py-2 rounded-full bg-gray-100 hover:bg-purple-100 flex-shrink-0">
+                <i class="fas fa-pizza-slice mr-2"></i>Pizza
+            </button>
+            <button class="px-4 py-2 rounded-full bg-gray-100 hover:bg-purple-100 flex-shrink-0">
+                <i class="fas fa-utensils mr-2"></i>Pasta
+            </button>
+            <button class="px-4 py-2 rounded-full bg-gray-100 hover:bg-purple-100 flex-shrink-0">
+                <i class="fas fa-bread-slice mr-2"></i>Sides
+            </button>
+            <button class="px-4 py-2 rounded-full bg-gray-100 hover:bg-purple-100 flex-shrink-0">
+                <i class="fas fa-wine-glass mr-2"></i>Drinks
+            </button>
+            <button class="px-4 py-2 rounded-full bg-gray-100 hover:bg-purple-100 flex-shrink-0">
+                <i class="fas fa-ice-cream mr-2"></i>Desserts
+            </button>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Menu Item Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+                     alt="Margherita Pizza" 
+                     class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-lg">Margherita Pizza</h3>
+                            <p class="text-gray-500 text-sm">Fresh tomatoes, mozzarella, basil</p>
+                        </div>
+                        <span class="font-bold">π15.99</span>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="text-sm">4.9 (120+)</span>
+                        </div>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Menu Items -->
+            <!-- Repeat similar structure for other menu items -->
+        </div>
+
+        <!-- Reviews Section -->
+        <section class="mt-12">
+            <h2 class="text-2xl font-bold mb-6">Customer Reviews</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Review Card -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe" 
+                             alt="Reviewer" 
+                             class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">John Doe</h4>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm ml-2">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Amazing pizza! The crust was perfect and the toppings were fresh. Delivery was quick too!</p>
+                    <div class="mt-4">
+                        <span class="text-sm text-gray-500">Ordered: Margherita Pizza</span>
+                    </div>
+                </div>
+
+                <!-- More Review Cards -->
+                <!-- Repeat similar structure for other reviews -->
+            </div>
+            <div class="text-center mt-8">
+                <button class="text-purple-600 hover:text-purple-800">
+                    Load More Reviews <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+            </div>
+        </section>
     </main>
 
-    <script src="/js/restaurant.js"></script>
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="p-4 border-b">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-bold">Your Cart</h3>
+                <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="p-4">
+            <!-- Cart Items -->
+            <div class="space-y-4">
+                <!-- Cart Item -->
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+                             alt="Pizza" 
+                             class="w-16 h-16 object-cover rounded-lg">
+                        <div class="ml-4">
+                            <h4 class="font-bold">Margherita Pizza</h4>
+                            <p class="text-gray-500 text-sm">π15.99</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button class="text-gray-500 hover:text-purple-600">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <span>1</span>
+                        <button class="text-gray-500 hover:text-purple-600">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Cart Summary -->
+            <div class="mt-8 space-y-4">
+                <div class="flex justify-between text-sm">
+                    <span>Subtotal</span>
+                    <span>π15.99</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span>Delivery Fee</span>
+                    <span>Free</span>
+                </div>
+                <div class="flex justify-between font-bold">
+                    <span>Total</span>
+                    <span>π15.99</span>
+                </div>
+                <button class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-600"></div>
+    </div>
+
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+    <script src="./public/js/app.js"></script>
 </body>
 </html>
