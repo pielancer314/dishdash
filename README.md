@@ -1,4 +1,4 @@
-# DishDash - Pi Network Food Delivery Platform
+# Food-pi-hub - Pi Network Food Delivery Platform
 
 A modern food delivery platform with integrated Pi Network payments, supporting both Pi Coin and PCM token transactions.
 
