@@ -2,7 +2,7 @@
   "name": "food-pi-hub",
   "version": "1.0.0",
   "description": "A blockchain-powered food delivery platform with Pi Network integration",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
@@ -31,9 +31,18 @@
   "homepage": "https://pielancer314.github.io/food-pi-hub",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
+    "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.0",
-    "tailwindcss": "^2.2.19"
+    "mongoose": "^7.3.1",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.7.1",
+    "tailwindcss": "^2.2.19",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
